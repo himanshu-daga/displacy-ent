@@ -3,7 +3,7 @@
         "title": "displaCy Named Entity Visualizer",
         "description": "Visualise spaCy's guess at the named entities in the document. You can filter the displayed types, to only show the annotations you're interested in.",
         "github": "explosion/displacy-ent",
-        "api": "https://api.explosion.ai/displacy/ent/",
+        "api": "http://localhost:8060/ent/",
 
         "stylesheets": [ "displacy-ent" ],
         "scripts": [

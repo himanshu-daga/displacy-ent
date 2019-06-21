@@ -5,10 +5,9 @@
 'use strict';
 
 {
-    const defaultText = 'When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously.\n\n“I can tell you very senior CEOs of major American car companies would shake my hand and turn away because I wasn’t worth talking to,” said Thrun, now the co-founder and CEO of online higher education startup Udacity, in an interview with Recode earlier this week.\n\nA little less than a decade later, dozens of self-driving startups have cropped up while automakers around the world clamor, wallet in hand, to secure their place in the fast-moving world of fully automated transportation.';
-
+    const defaultText = "When Sebastian Thrun started working on self-driving cars at Google in 2007, few people outside of the company took him seriously. I can tell you very senior CEOs of major American car companies would shake my hand and turn away because I wasn't worth talking to, said Thrun, now the co-founder and CEO of online higher education startup Udacity, in an interview with Recode earlier this week. A little less than a decade later, dozens of self-driving startups have cropped up while automakers around the world clamor, wallet in hand, to secure their place in the fast-moving world of fully automated transportation.";
     const defaultEnts = ['person', 'org', 'gpe', 'loc', 'product', 'date', 'time' ];
-    const defaultModel = 'en';
+    const defaultModel = 'en_core_web_sm';
 
     const loading = () => document.body.classList.toggle('loading');
     const onError = (err) => $('#error').style.display = 'block';
@@ -36,7 +35,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const text = getQueryVar('text') || defaultText;
-        const model = getQueryVar('model') || defaultModel;
+        const model = defaultModel;
         const ents = (getQueryVar('ents')) ? getQueryVar('ents').split(',') : defaultEnts;
 
         if(getQueryVar('text')) updateView(text, model, ents);
@@ -49,7 +48,7 @@
     const run = (
         text = $('#input').value || defaultText,
         ents = [...$$('[name="ents"]:checked')].map(ent => ent.value),
-        model = $('[name="model"]:checked').value || defaultModel ) => {
+        model = defaultModel ) => {
             displacy.parse(text, model, ents);
             updateView(text, model, ents);
             updateURL(text, model, ents);

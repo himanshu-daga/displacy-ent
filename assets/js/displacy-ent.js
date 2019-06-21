@@ -25,7 +25,7 @@ class displaCyENT {
 
         let xhr = new XMLHttpRequest();
         xhr.open('POST', this.api, true);
-        xhr.setRequestHeader('Content-type', 'text/plain');
+        xhr.setRequestHeader('Content-type', 'application/json');
         xhr.onreadystatechange = () => {
             if(xhr.readyState === 4 && xhr.status === 200) {
                 if(typeof this.onSuccess === 'function') this.onSuccess();
@@ -49,7 +49,8 @@ class displaCyENT {
         this.container.innerHTML = '';
         let offset = 0;
 
-        spans.forEach(({ type, start, end }) => {
+        spans.forEach(({ start, end, label }) => {
+            const type = label;
             const entity = text.slice(start, end);
             const fragments = text.slice(offset, start).split('\n');
 
